@@ -12,4 +12,10 @@ describe('<AuralStatus />', () => {
     it('Renders without crashing', () => {
         shallow(<AuralStatus />);
     })
+
+    it('Renders an aural status update', () => {
+        let status = 'You are listening';
+        let wrapper = shallow(<AuralStatus auralStatus={status} />)
+        expect(wrapper.contains(status)).toEqual(true);
+    })
 })

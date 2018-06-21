@@ -11,7 +11,6 @@ describe('<GuessList />', () => {
         }
     })
 
-
     it('should render without crashing', () => {
         shallow(<GuessList guesses={seedGuess} />);
     });
