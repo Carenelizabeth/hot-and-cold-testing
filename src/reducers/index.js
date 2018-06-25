@@ -1,23 +1,32 @@
-export const SET_CORRECT_ANSWER = 'SET_CORRECT_ANSWER';
-export const setCorrectAnswer = answer => ({
-    type: SET_CORRECT_ANSWER,
-    answer
-});
+import * as actions from '../actions'
 
-export const ADD_GUESS = 'ADD_GUESS';
-export const addGuess = guess => ({
-    type: ADD_GUESS,
-    guess
-})
+const initialState = {
+    guesses: [],
+    feedback: 'Make your guess!',
+    auralStatus: '',
+    correctAnswer: Math.round(Math.random() * 100) + 1
+}
 
-export const GIVE_FEEDBACK = 'GIVE_FEEDBACK';
-export const giveFeedback = feedback => ({
-    type: GIVE_FEEDBACK,
-    feedback
-})
+export const hotColdReducer = (state=initialState, action) =>{
+    if(action.type === actions.GIVE_FEEDBACK){
+        return Object.assign({}, state, {
+            feedback: action.feedback
+        });
+    }
+    else if(action.type === actions.UPDATE_AURAL_STATUS){
+        return Object.assign({}, state, {
+            feedback: action.feedback
+        })
+    }
+    else if(action.type === actions.SET_CORRECT_ANSWER){
+        return Object.assign({}, state, {
+            feedback: action.feedback
+        })
+    }else if(action.type === actions.ADD_GUESS){
+        return Object.assign({}, state, {
+            guesses: [...state.guesses, action.guess]
+        })
+    }
 
-export const UPDATE_AURAL_STATUS = 'UPDATE_AURAL_STATUS';
-export const updateAuralStatus = status => ({
-    type: UPDATE_AURAL_STATUS,
-    status
-})
+    return state;
+}
